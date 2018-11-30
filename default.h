@@ -1,0 +1,7 @@
+#define INODECOUNT	(16384)
+#define INODESIZE	(64)
+#define INODESTART	(2)
+#define BLOCKCOUNT	(16384)
+#define BLOCKSIZE	(512)
+#define BLOCKSTART	(10)
+#define MAGIC 		(0xffff)
