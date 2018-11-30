@@ -2,6 +2,8 @@
 #define __UINT8ARRAY_HPP_
 #include<cstdint>
 #include<cstring>
+#include<iostream>
+using namespace std;
 class UInt8Array{
 private:
 	uint16_t size;
@@ -10,6 +12,7 @@ public:
 	UInt8Array(){size = 0;}
 	UInt8Array(uint16_t arr_size){
 		size = arr_size;
+		cout<<"new array "<<size<<endl;
 		data_arr = new uint8_t[size];
 	}
 	~UInt8Array(){
@@ -35,12 +38,16 @@ public:
 	template <typename T>
 	void loadToStruct(T *x,uint16_t offset = 0){
 		if(offset+sizeof(x)>size) throw "ArrData out of range";
-		memcpy(data_arr+offset,x,sizeof(T));
+		memcpy((char*)x,(char*)data_arr+offset,sizeof(T));
 	}
 	template <typename T>
 	void loadFromStruct(T *x,uint16_t offset = 0){
-		if(offset+sizeof(x)>size) throw "ArrData out of range";
-		memcpy(x,data_arr+offset,sizeof(T));
+		if(offset+sizeof(T)>size) throw "ArrData out of range";
+			int i=0;
+		cout<<"loadFromStruct "<<sizeof(T)<<endl;
+		memcpy((char *)data_arr+offset,(char*)x,sizeof(T));
+//		for(int i=0;i<size;i++) cout<<(int)data_arr[i]<<endl;
+
 	}
 };
 #endif

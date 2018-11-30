@@ -42,15 +42,13 @@ public:
 		return res;
 	}
 	void write(uint16_t sector,UInt8Array data){
-		cout<<"write"<<" "<<sector<<endl;
 		char filename[20];
 		memset(filename,0,sizeof(filename));
 		sprintf(filename, "%d", sector);
 		strcat(filename, ".sector");
 		FILE *fp = fopen(filename, "w");
-		
 		for(int i=0;i<size;i++) 
-			fprintf(fp,"%3hhx",data.get(i));
+			fprintf(fp,"%-3hhx",data.get(i));
 		fclose(fp);
 	}
 };
