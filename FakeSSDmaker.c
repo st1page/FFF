@@ -15,11 +15,12 @@ void gen(){
 		sprintf(filename, "%d", i);
 		strcat(filename, ".sector");
 		FILE *fp = fopen(filename, "w");
-		for(int j=0;j<SECTOR_SIZE;j++) fputs( "00 ", fp );
+		for(int j=0;j<SECTOR_SIZE;j++) fputs( " 0 ", fp );
 		fclose(fp);
 	}
 	FILE *fp = fopen("property", "w");
 	fprintf(fp,"%d\n%d",SECTOR_SIZE,SECTOR_NUM);
+	fclose(fp);
 	return ;
 }
 int main(){

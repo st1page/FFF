@@ -7,17 +7,21 @@
 #include<iostream>
 using namespace std;	
 
-class Block{
+class BlockIO{
 private:
 	uint16_t size;
-	uint16_t offset;
+	uint32_t offset;
 	Disk disk;
 public:
 	UInt8Array data;
-	Block(uint16_t bsize,uint16_t boffset){
+	BlockIO(){}
+	BlockIO(uint16_t bsize,uint32_t boffset){
 		size = bsize;
 		offset = boffset;
 		data = UInt8Array(size);
+		read();
+	}
+	void read(){
 		uint16_t sector_size = disk.getSectorSize();
 		uint16_t cur_sector_id = offset / sector_size;
 		UInt8Array cur_sector = disk.read(cur_sector_id);
@@ -36,7 +40,7 @@ public:
 		uint16_t cur_sector_id = offset / sector_size;
 
 		UInt8Array cur_sector = disk.read(cur_sector_id);
-		int j = offset % sector_size; 
+		uint16_t j = offset % sector_size; 
 		for(int i=0;i<size;i++,j++){
 			if(j==sector_size) {
 				disk.write(cur_sector_id, cur_sector);
@@ -48,18 +52,13 @@ public:
 		disk.write(cur_sector_id, cur_sector);
 	}
 	template <typename T>
-	T toStruct(){
+	void toStruct(T &x){
 		if(sizeof(T)!=data.getSize()) throw "toStruct different size";
-		T res;
-		data.loadToStruct(&res);
-		return res;
+		data.loadToStruct(&x);
 	}
 
 	template <typename T>
-	void fromStruct(T x){
-
-//		cout<<sizeof(T)<<" "<<endl;
-//		cout<<data.getSize()<<endl;
+	void fromStruct(const T &x){
 		if(sizeof(T)!=data.getSize()) {
 			printf("Wrong\n");
 			throw "fromStruct different size";
