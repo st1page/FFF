@@ -3,23 +3,20 @@
 
 #include <cstdint>
 
-#include "BlockTypes.h"
+#include "DataTypes.h"
 #include "SuperBlock.hpp"
 #include "BlockIO.hpp"
+#include "Block.hpp"
 #include "UInt8Array.hpp"
-
-class DirBlock{
+ 
+class DirBlock:public Block {
 private:
 	DirBlockHeader header;
 	BlockIO io;
 public:	
 	struct iterator;
-	DirBlock(uint16_t id, const SuperBlockData& super) {
-		uint16_t size = super.block_size;
-		uint32_t offset = id * size;
-		offset += super.first_data_block*size;
-		io = BlockIO(size, offset);
-		read();
+	DirBlock(uint16_t id, const SuperBlockData& super)
+		:Block(id, super) {
 	}
 	void format(const SuperBlockData& super){
 		header.entry_count = 0;

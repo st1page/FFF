@@ -1,5 +1,5 @@
-#ifndef __BLOCK_HPP_
-#define __BLOCK_HPP_
+#ifndef __BLOCKIO_HPP_
+#define __BLOCKIO_HPP_
 #include <cstdint>
 #include "Disk.hpp"
 #include "UInt8Array.hpp"

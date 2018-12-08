@@ -2,7 +2,7 @@
 #define __SUPERBLOCK_HPP_
 #include<cstdint>
 
-#include "BlockTypes.h"
+#include "DataTypes.h"
 #include "BlockIO.hpp"
 
 #include<iostream>

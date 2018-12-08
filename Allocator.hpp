@@ -3,7 +3,7 @@
 
 #include <cstdint>
 
-#include "BlockTypes.h"
+#include "DataTypes.h"
 #include "SuperBlock.hpp"
 #include "BlockIO.hpp"
 #include "UInt8Array.hpp"
