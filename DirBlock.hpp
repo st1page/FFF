@@ -41,7 +41,7 @@ public:
 		}
 		return end();
 	}
-	void push_back(Entry &entry){
+	void add(Entry &entry){
 		uint16_t offset = rbegin().getEntryHeader().offset;
 		offset -= entry.name.getSize(); 
 		

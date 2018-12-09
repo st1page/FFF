@@ -139,6 +139,13 @@ public:
 			return arg.id != id;
 		}
 	};
+
+	iterator begin(){
+		return iterator(inode ,super,0);
+	}
+	iterator end(){
+		return iterator(inode ,super, inode.data.block_count);
+	}
 };
 
 #endif
