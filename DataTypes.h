@@ -37,9 +37,10 @@ struct InodeData{
 	uint32_t mtime;   /* Modification time */
 	uint16_t block[8] = {0,0,0,0,0,0,0,0};  /* 6个直接 1个间接 1个双间接*/
 											/* dir 文件名大于64必存于双间接以上 */
+	uint16_t block_count;
 	uint16_t direct_count;
 	uint16_t indirect_count;
-	uint32_t reserved[6];
+	uint32_t reserved[5];
 	
 };
 struct DirBlockHeader{

@@ -12,6 +12,7 @@ class Block{
 protected:
 	BlockIO io;
 public:	
+	Block(){}
 	Block(uint16_t id, const SuperBlockData& super) {
 		uint16_t size = super.block_size;
 		uint32_t offset = id * size;
